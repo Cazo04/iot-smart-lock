@@ -18,3 +18,6 @@ def main():
 ```bash
 python test-detect.py
 ```
+
+### Slack
+- For Slack to send a notification, you need to configure your own SLACK_TOKEN in .env file
