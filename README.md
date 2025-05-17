@@ -8,15 +8,8 @@ python register-face.py --path-to-image "karina.jpeg" --name "Karina"
 ```
 
 ### Detect
-- The camera at each locker will continuously scan for faces. The current version of this script only verifies faces using a static image for demonstration purposes.
-- Firstly, you need to change the path to image in the **test-dectect.py** :
-```python
-def main():
-    image_binary = preprocess_image("gdragon.jpg")
-```
-- Then, run for detection
 ```bash
-python test-detect.py
+python app.py
 ```
 
 ### Slack
