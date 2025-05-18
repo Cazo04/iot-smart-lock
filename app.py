@@ -30,9 +30,11 @@ def process_face(frame):
         )
         
         if 'FaceMatches' in response and response['FaceMatches']:
+            print(1)
             message = "Unlocked successfully!!!"
             return True, message
         else:
+            print(0)
             message = "Warning: Someone tried to unlock your locker!!!!"
             return False, message
     except Exception as e:
@@ -51,8 +53,6 @@ def main():
     startup_delay = 10
     last_detection_time = 0
     cooldown_period = 30
-    
-    print(f"Camera started. Waiting {startup_delay} seconds before capturing.")
     
     while True:
         ret, frame = cap.read()
