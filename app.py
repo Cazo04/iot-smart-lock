@@ -30,22 +30,22 @@ def process_face(frame):
         )
         
         if 'FaceMatches' in response and response['FaceMatches']:
-            print(1)
+            #print(1)
             message = "Unlocked successfully!!!"
             return True, message
         else:
-            print(0)
+            #print(0)
             message = "Warning: Someone tried to unlock your locker!!!!"
             return False, message
     except Exception as e:
-        print(f"Error: {e}")
+        #print(f"Error: {e}")
         return False, f"Error processing face: {str(e)}"
 
 def main():
     cap = cv2.VideoCapture(0)
     if not cap.isOpened():
         print("Error: Could not open camera.")
-        return
+        return False
     
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
     
@@ -93,7 +93,8 @@ def main():
                     except Exception as e:
                         print(f"Slack error: {e}")
                     
-                    status = "Access Granted" if recognized else "Access Denied"
+                    return recognized
+                    # status = "Access Granted" if recognized else "Access Denied"
                     color = (0, 255, 0) if recognized else (0, 0, 255)
                     cv2.putText(display_frame, status, (10, 30), 
                                cv2.FONT_HERSHEY_SIMPLEX, 0.7, color, 2)
@@ -110,6 +111,8 @@ def main():
     
     cap.release()
     cv2.destroyAllWindows()
+    return False
 
 if __name__ == "__main__":
-    main()
+    result = main()
+    print("ok" if result else "fail")
